@@ -63,7 +63,6 @@
 
   <div class="box">
     <h2>Quadratic Equation Solver</h2>
-    <!-- inputs for a, b, c -->
     <label>Enter a:</label>
     <input type="number" id="a">
 
@@ -74,7 +73,7 @@
     <input type="number" id="c">
 
     <button onclick="solve()">Solve</button>
-    <button type="reset" onclick="resetQuad()">Clear</button>
+    <button onclick="resetQuad()">Clear</button>
 
     <div id="quadResult"></div>
   </div>
@@ -85,13 +84,13 @@
     <input type="number" id="score">
 
     <button onclick="grade()">Get Grade</button>
-    <button type="reset" onclick="resetGrade()">Clear</button>
+    <button onclick="resetGrade()">Clear</button>
 
     <div id="gradeResult"></div>
   </div>
 
   <script>
-    // function for quadratic
+    // Quadratic Solver
     function solve() {
       let a = parseFloat(document.getElementById('a').value);
       let b = parseFloat(document.getElementById('b').value);
@@ -109,30 +108,34 @@
       }
 
       let D = (b * b) - (4 * a * c);
-      let text = '<div class="msg ok">Discriminant (D): ${D.toFixed(2)}<br>';
+      let text = <div class="msg ok">Discriminant (D): ${D.toFixed(2)}<br>;
 
       if (D > 0) {
         let r1 = (-b + Math.sqrt(D)) / (2 * a);
         let r2 = (-b - Math.sqrt(D)) / (2 * a);
-        text += 'Nature: Two real roots<br>Roots: ${r1.toFixed(2)}, ${r2.toFixed(2)}</div>';
+        text += Nature: Two real roots<br>Roots: ${r1.toFixed(2)}, ${r2.toFixed(2)}</div>;
       } else if (D === 0) {
         let r = -b / (2 * a);
-        text += 'Nature: One repeated root<br>Root: ${r.toFixed(2)}</div>';
+        text += Nature: One repeated root<br>Root: ${r.toFixed(2)}</div>;
       } else {
         let real = (-b / (2 * a)).toFixed(2);
         let imag = (Math.sqrt(-D) / (2 * a)).toFixed(2);
-        text += 'Nature: Complex roots<br>Roots: ${real} ± ${imag}i</div>';
+        text += Nature: Complex roots<br>Roots: ${real} ± ${imag}i</div>;
       }
+
       out.innerHTML = text;
     }
 
     function resetQuad() {
+      document.getElementById('a').value = '';
+      document.getElementById('b').value = '';
+      document.getElementById('c').value = '';
       document.getElementById('quadResult').innerHTML = '';
     }
 
-    // grading part
+    // Grade Converter
     function grade() {
-      let }score = parseFloat(document.getElementById('score').value);
+      let score = parseFloat(document.getElementById('score').value);
       let out = document.getElementById('gradeResult');
       out.innerHTML = '';
 
@@ -150,10 +153,11 @@
       else if (score >= 50) g = 'C';
       else g = 'D';
 
-      out.innerHTML = '<div class="msg ok">Score ${score} → Grade ${g}</div>';
-    
+      out.innerHTML = <div class="msg ok">Score ${score} → Grade ${g}</div>;
+    }
 
     function resetGrade() {
+      document.getElementById('score').value = '';
       document.getElementById('gradeResult').innerHTML = '';
     }
   </script>
